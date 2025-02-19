@@ -1,0 +1,2 @@
+sudo apt-get install libgphoto2-dev
+pip install gphoto2 --user --no-binary :all:
