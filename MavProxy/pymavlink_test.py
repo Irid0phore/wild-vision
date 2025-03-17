@@ -36,7 +36,7 @@ print("Command accepted" if result else "Command failed")
 
 msg = m.recv_match(type='SYS_STATUS',blocking=True)
 if not msg:
-	return
+	exit()
 if msg.get_type() == "BAD_DATA":
 	if mavutil.all_printable(msg.data):
 		sys.stdout.write(msg.data)
