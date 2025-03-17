@@ -31,5 +31,17 @@ connection = mavutil.mavlink_connection('udpin:localhost:5762')
 connection.wait_heartbeat()
 print(f"Heartbeat from system (system {connection.target_system} component {connection.target_component})")
 
-result = set_message_interval(connection, mavutil.mavlink.MAVLINK_MSG_ID_BATTERY_STATUS, 1e6)
+result = set_message_interval(connection, mavutil.mavlink.MAVLINK_MSG_ID_SYS_STATUS, 1e6)
 print("Command accepted" if result else "Command failed")
+
+msg = m.recv_match(type='SYS_STATUS',blocking=True)
+if not msg:
+	return
+if msg.get_type() == "BAD_DATA":
+	if mavutil.all_printable(msg.data):
+		sys.stdout.write(msg.data)
+		sys.stdout.flush()
+else:
+	#Message is valid
+	# Use the attribute
+	print('Mode: %s' % msg.mode)
