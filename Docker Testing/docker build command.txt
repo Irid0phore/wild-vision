@@ -1,1 +1,0 @@
-sudo docker build -f Dockerfile-jetson-jetpack4 -t jetson-jetpack4 .
