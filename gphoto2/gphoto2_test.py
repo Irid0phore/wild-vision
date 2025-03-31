@@ -16,7 +16,7 @@ for i in range(10):
 	file_path = camera.capture(gp.GP_CAPTURE_IMAGE)
 	print(f"Camera file path: {file_path.folder}/{file_path.name}")
 
-	target_path = f"/home/alx/NamibiaWAO/captures/{file_path.name}"
+	target_path = f"/home/alx/wild-vision/captures/{file_path.name}"
 	print(f"Copying image to {target_path}")
 	camera_file = camera.file_get(file_path.folder, file_path.name, gp.GP_FILE_TYPE_NORMAL)
 	camera_file.save(target_path)
